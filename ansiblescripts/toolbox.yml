@@ -2,6 +2,7 @@
   - hosts: localhost
   
     roles:
-    - { role: ts3server, tags: ['ts3server'] }
+    - { role: resilio, tags: ['resilio'] }
     - { role: tautulli, tags: ['tautulli'] }
+    - { role: ts3server, tags: ['ts3server'] }
     

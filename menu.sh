@@ -3,11 +3,6 @@ version="v0.1" 1>/dev/null 2>&1
 
 export NCURSES_NO_UTF8_ACS=1
 clear
-HEIGHT=15
-WIDTH=38
-CHOICE_HEIGHT=10
-BACKTITLE="Toolbox"
-Title="Toolbox Version: $version"
 file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
     if [ -e "$file" ]
         then 
@@ -35,12 +30,13 @@ OPTIONS=(A "Install Docker and Ansible"
         F "Backup & Restore"
         G "Get Path"
         Z "Exit")
-CHOICE=$(dialog --backtitle "$BACKTITLE" \
-        --title "$TITLE" \
-        --menu "$MENU" \
-        $HEIGHT $WIDTH $CHOICE_HEIGHT \
-        "${OPTIONS[@]}" \
-        2>&1 >/dev/tty)
+CHOICE=$(dialog --backtitle "toolbox" \
+                --title "toolbox" \
+                --menu "$MENU" \
+                15 38 10 \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
 case $CHOICE in
     A)
         /opt/toolbox/scripts/dependencies/warning.sh ;;

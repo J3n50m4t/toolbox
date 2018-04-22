@@ -1,0 +1,39 @@
+#resilio
+---
+- include_role:
+    name: variables
+
+- name: Remove resilio Container
+  docker_container:
+    name: resilio
+    state: absent
+
+- name: Deploy resilio Container
+  docker_container:
+    name: resilio
+    image: linuxserver/resilio-sync
+    pull: yes
+    cpu_shares: 512
+    published_ports:
+      - "8888:8888"
+      - "55555:55555"
+    volumes:
+      - "{{path.stdout}}tools/resilio:/config"
+      - "{{path.stdout}}:/sync"
+      - /etc/localtime:/etc/localtime:ro
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      UMASK_SET: "022"
+    networks:
+      - name: toolbox
+        aliases:
+          - resilio
+    restart_policy: always
+    state: started
+    labels:
+      traefik.enable: "true"
+      # traefik.frontend.auth.basic: "{{username.stdout}}:{{password.stdout}}"
+      traefik.frontend.redirect.entryPoint: "https"
+      traefik.frontend.rule: "Host:resilio.{{domain.stdout}}"
+      traefik.port: "8888"
