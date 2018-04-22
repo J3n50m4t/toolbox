@@ -3,6 +3,7 @@
   
     roles:
     - { role: resilio, tags: ['resilio'] }
+    - { role: sabnzbd, tags: ['sabnzbd'] }
     - { role: tautulli, tags: ['tautulli'] }
     - { role: ts3server, tags: ['ts3server'] }
     
