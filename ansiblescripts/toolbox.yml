@@ -1,0 +1,7 @@
+---
+  - hosts: localhost
+  
+    roles:
+    - { role: ts3server, tags: ['ts3server'] }
+    - { role: tautulli, tags: ['tautulli'] }
+    

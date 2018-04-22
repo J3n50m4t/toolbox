@@ -1,0 +1,36 @@
+#tautulli
+---
+- include_role:
+    name: variables
+
+- name: Remove tautulli Container
+  docker_container:
+    name: tautulli
+    state: absent
+
+- name: Deploy tautulli Container
+  docker_container:
+    name: tautulli
+    image: shiggins8/tautulli
+    pull: yes
+    cpu_shares: 512
+    published_ports:
+      - "8181:8181"
+    env:
+      PGID: "1000"
+      PUID: "1000"
+    volumes:
+      - "{{path.stdout}}tools/tautulli:/config"
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - name: toolbox
+        aliases:
+          - tautulli
+    restart_policy: always
+    state: started
+    labels:
+      traefik.enable: "true"
+      # traefik.frontend.auth.basic: "{{username.stdout}}:{{password.stdout}}"
+      traefik.frontend.redirect.entryPoint: "https"
+      traefik.frontend.rule: "Host:tautulli.{{domain.stdout}},plexpy.{{domain.stdout}}"
+      traefik.port: "8181"

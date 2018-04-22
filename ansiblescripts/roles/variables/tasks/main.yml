@@ -1,0 +1,20 @@
+---
+- name: Set Domain
+  shell: "cat /opt/toolbox/userconfigs/domain"
+  register: domain
+  ignore_errors: True
+
+- name: Set Path
+  shell: "cat /opt/toolbox/userconfigs/path"
+  register: path
+  ignore_errors: True
+
+- name: Set Username
+  shell: "cat /opt/toolbox/userconfigs/username"
+  register: username
+  ignore_errors: True
+
+- name: Set Password
+  shell: "cat /opt/toolbox/userconfigs/password"
+  register: password
+  ignore_errors: True

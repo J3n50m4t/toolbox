@@ -1,0 +1,30 @@
+---
+- include_role:
+    name: variables
+
+- name: Remove ts3server Container
+  docker_container:
+    name: ts3server
+    state: absent
+
+- name: Deploy ts3server Container
+  docker_container:
+    name: ts3server
+    image: aheil/teamspeak3-server
+    pull: yes
+    cpu_shares: 512
+    published_ports:
+      - "9987:9987/udp"
+      - "10011:10011"
+      - "30033:30033"
+    env:
+      TS3SERVER_LICENSE: "accept"
+    volumes:
+      - "{{path.stdout}}tools/ts3server:/data"
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - name: toolbox
+        aliases:
+          - ts3server
+    restart_policy: always
+    state: started
