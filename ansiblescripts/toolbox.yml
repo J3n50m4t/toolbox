@@ -2,6 +2,7 @@
   - hosts: localhost
   
     roles:
+    - { role: ombi, tags: ['ombi'] }
     - { role: resilio, tags: ['resilio'] }
     - { role: sabnzbd, tags: ['sabnzbd'] }
     - { role: tautulli, tags: ['tautulli'] }

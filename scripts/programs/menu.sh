@@ -65,7 +65,15 @@ case $CHOICE in
             tool=Tautulli
             program=tautulli
             dialog --infobox "Installing: $tool" 3 30
-            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags tautulli &>/dev/null &
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        P) 
+            tool=Ombi
+            program=ombi
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
