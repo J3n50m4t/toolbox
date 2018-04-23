@@ -1,0 +1,40 @@
+#rutorrent
+---
+- include_role:
+    name: variables
+
+- name: Remove rutorrent Container
+  docker_container:
+    name: rutorrent
+    state: absent
+
+- name: Deploy rutorrent Container
+  docker_container:
+    name: rutorrent
+    image: linuxserver/rutorrent
+    pull: yes
+    cpu_shares: 256
+    published_ports:
+      - "9999:80" # rethinking, because no security atm
+      - "51413:51413"
+      # - "6881:6881/udp"
+      - "5000:5000"
+    volumes:
+      - "{{path.stdout}}tools/rutorrent:/config"
+      - "{{path.stdout}}downloads/rutorrents:/sync"
+      - /etc/localtime:/etc/localtime:ro
+    env:
+      PUID: "1000"
+      PGID: "1000"
+    networks:
+      - name: toolbox
+        aliases:
+          - rutorrent
+    restart_policy: always
+    state: started
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.auth.basic: "{{username.stdout}}:{{password.stdout}}"
+      traefik.frontend.redirect.entryPoint: "https"
+      traefik.frontend.rule: "Host:rutorrent.{{domain.stdout}}"
+      traefik.port: "9999"

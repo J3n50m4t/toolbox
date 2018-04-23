@@ -52,7 +52,13 @@ case $CHOICE in
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
         D)
-            bash echo $CHOICE ;;
+            tool=RuTorrent
+            program=rutorrent
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
         E)
             bash echo $CHOICE ;;
         F)
