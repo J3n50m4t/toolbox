@@ -33,4 +33,4 @@
       # traefik.frontend.auth.basic: "{{username.stdout}}:{{password.stdout}}"
       traefik.frontend.redirect.entryPoint: "https"
       traefik.frontend.rule: "Host:ombi.{{domain.stdout}}, wishlist.{{domain.stdout}},requests.{{domain.stdout}}"
-      traefik.port: "8888"
+      traefik.port: "3579"
