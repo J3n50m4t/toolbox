@@ -16,7 +16,7 @@ file="/opt/toolbox/userconfigs/path" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        dialog --inputbox "Insert the path, where you want toolbox to run from: Add a / at the and.\nNote: there will be data stored" 8 80 2>/opt/toolbox/userconfigs/path
+        dialog --inputbox "Insert the path, where you want toolbox to run from: Add a / at the and.\nNote: most data (like downloads) will be stored there" 8 80 2>/opt/toolbox/userconfigs/path
         
     fi
 
