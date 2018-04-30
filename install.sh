@@ -5,6 +5,6 @@ sudo chmod 750 /opt/toolbox
 git clone git@github.com:J3n50m4t/toolbox.git /opt/toolbox
 sudo chmod 750 /opt/toolbox -R
 mkdir /opt/toolbox/userconfigs
-cp /opt/toolbox/toolbox /bin
-chmod 755 /bin/toolbox
+sudo cp /opt/toolbox/toolbox /bin
+sudo chmod 755 /bin/toolbox
 echo "run toolbox by typing 'toolbox' into your terminal"
