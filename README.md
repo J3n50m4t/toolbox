@@ -1,3 +1,8 @@
 # toolbox
-Install script missing right now. 
-Clone to /opt/toolbox and run it with /opt/toolbox/toolbox as 1000:1000
+Install: 
+`wget https://raw.githubusercontent.com/J3n50m4t/toolbox/master/install.sh -O - | sh`
+needs sudo.. 
+## the script does:
+* install git
+* clones toolbox git repo to /opt/toolbox
+* run toolbox (which initially installs dialog )
