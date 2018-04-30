@@ -8,8 +8,7 @@ file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        touch /opt/toolbox/userconfigs/domain
-        dialog --inputbox "Insert you domain:" 8 45 2>/opt/toolbox/userconfigs/domain
+        dialog --inputbox "Insert your domin. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/domain
 fi
 
 file="/opt/toolbox/userconfigs/path" 1>/dev/null 2>&1
@@ -17,9 +16,8 @@ file="/opt/toolbox/userconfigs/path" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        touch /opt/toolbox/userconfigs/path
-        dialog --inputbox "Insert you path: Add a / at the and." 8 45 2>/opt/toolbox/userconfigs/path
-        sudo bash /opt/toolbox/menu.sh
+        dialog --inputbox "Insert the path, where you want toolbox to run from: Add a / at the and.\nNote: there will be data stored" 8 80 2>/opt/toolbox/userconfigs/path
+        
     fi
 
 OPTIONS=(A "Install Docker and Ansible"
