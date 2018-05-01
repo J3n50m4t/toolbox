@@ -7,6 +7,15 @@
     name: ts3server
     state: absent
 
+- name: Creates directory
+  file:
+    path: "{{path.stdout}}tools/ts3server"
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0775
+    recurse: yes
+
 - name: Deploy ts3server Container
   docker_container:
     name: ts3server
