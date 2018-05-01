@@ -10,7 +10,7 @@ BACKTITLE="Toolbox"
 Title="Toolbox Version: $version"
 if 
     dialog --stdout --title "WARNING" \
-        --yesno "\nThis will install al Dependencies. Check github for more informations? \nProceed?" 0 0;
+        --yesno "\nThis will install all dependencies. Check github for more informations! \nProceed?" 0 0;
     then  
     /opt/toolbox/scripts/dependencies/install.sh
     exit 0
