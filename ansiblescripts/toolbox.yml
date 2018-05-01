@@ -2,10 +2,13 @@
   - hosts: localhost
   
     roles:
+    - { role: network, tags: ['network'] }
     - { role: ombi, tags: ['ombi'] }
+    - { role: portainer, tags: ['portainer'] }
     - { role: resilio, tags: ['resilio'] }
     - { role: rutorrent, tags: ['rutorrent'] }
     - { role: sabnzbd, tags: ['sabnzbd'] }
     - { role: tautulli, tags: ['tautulli'] }
     - { role: ts3server, tags: ['ts3server'] }
-    
+    #- { role: thelounge, tags: ['thelounge'] }
+    #- { role: traefik, tags: ['traefik'] }

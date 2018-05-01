@@ -1,0 +1,5 @@
+#docker network toolbox creation
+- name: create network toolbox
+  docker_network:
+    name: "toolbox"
+    state: present
