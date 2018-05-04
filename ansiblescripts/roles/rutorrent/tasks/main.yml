@@ -8,6 +8,15 @@
     name: rutorrent
     state: absent
 
+- name: Creates directory
+  file:
+    path: "{{path.stdout}}tools/rutorrent"
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0775
+    recurse: yes
+
 - name: Deploy rutorrent Container
   docker_container:
     name: rutorrent

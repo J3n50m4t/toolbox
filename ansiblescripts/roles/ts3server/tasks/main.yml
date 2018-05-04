@@ -1,3 +1,4 @@
+#ts3server 
 ---
 - include_role:
     name: variables
