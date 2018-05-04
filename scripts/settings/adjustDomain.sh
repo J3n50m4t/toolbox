@@ -1,7 +1,4 @@
 #!/bin/bash
-version="v0.1" 1>/dev/null 2>&1
-
-
 dialog --title "WARNING" --infobox "Adjusting your Domain after setting up your containers can cause HUGE problems! It's recommended to recreate every container." 7 50
 sleep 5;
 

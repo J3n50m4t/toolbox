@@ -1,13 +1,11 @@
 #!/bin/bash
-version="v0.1" 1>/dev/null 2>&1
-
 export NCURSES_NO_UTF8_ACS=1
 clear
 HEIGHT=15
 WIDTH=38
 CHOICE_HEIGHT=10
 BACKTITLE="SettingsMenu"
-Title="Toolbox Version: $version"
+Title="Toolbox"
 
 OPTIONS=(A "Change Path"
          B "Reinitiale Folders"

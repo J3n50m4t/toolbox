@@ -1,6 +1,4 @@
 #!/bin/bash
-version="v0.1" 1>/dev/null 2>&1
-
 export NCURSES_NO_UTF8_ACS=1
 clear
 
