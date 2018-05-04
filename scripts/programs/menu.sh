@@ -3,6 +3,7 @@ export NCURSES_NO_UTF8_ACS=1
 clear
 
 OPTIONS=(O "Ombi"
+         Rc "Rclone"
          Re "Resilio"
          Ru "rutorrent"
          S "Sabnzbd"
@@ -22,6 +23,17 @@ case $CHOICE in
             program=ombi
             dialog --infobox "Installing: $tool" 3 30
             ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        Rc)
+            tool=Rclone
+            dialog --infobox "Installing: $tool" 3 30
+            dialog --infobox "Rclone config will show up soon" 3 35
+            sleep 2
+
+            chmod +x /opt/toolbox/scripts/workers/installRclone.sh
+            /opt/toolbox/scripts/workers/installRclone.sh
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;

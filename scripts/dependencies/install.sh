@@ -12,6 +12,8 @@ echo "28" | dialog --gauge "Installing python" 10 70 0
 sudo apt-get install python-pip -y 1>/dev/null 2>&1
 echo "42" | dialog --gauge "Installing docker-py" 10 70 0
 sudo pip install docker-py 1>/dev/null 2>&1
+echo "50" | dialog --gauge "Installing curl unzip wget" 10 70 0
+sudo apt-get install unzip curl wget -y 1>/dev/null 2>&1
 
 echo "56" |  dialog --gauge "Installing portainer" 10 70 0
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags network &>/dev/null &
