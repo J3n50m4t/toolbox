@@ -29,11 +29,18 @@ case $CHOICE in
         Rc)
             tool=Rclone
             dialog --infobox "Installing: $tool" 3 30
-            dialog --infobox "Rclone config will show up soon" 3 35
-            sleep 2
-
-            chmod +x /opt/toolbox/scripts/workers/installRclone.sh
-            /opt/toolbox/scripts/workers/installRclone.sh
+            if 
+                dialog --stdout --title "GDrive-Version? " \
+                    --yesno "\nDo you want to create a folder structure for gdrive encrytion usage?" 0 0;
+                then  
+                    dialog --infobox "Rclone config will show up soon" 3 35
+                    chmod +x /opt/toolbox/scripts/workers/installRcloneGdrive.sh
+                    /opt/toolbox/scripts/workers/installRcloneGdrive.sh
+            else
+                dialog --infobox "Rclone config will show up soon" 3 35
+                chmod +x /opt/toolbox/scripts/workers/installRclone.sh
+                /opt/toolbox/scripts/workers/installRclone.sh
+            fi
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
