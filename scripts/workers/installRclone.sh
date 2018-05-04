@@ -1,9 +1,6 @@
 #!/bin/bash
 
 path=$(cat /opt/toolbox/userconfigs/path)
-mkdir -p $path/rclone/.gdrive
-mkdir -p $path/rclone/.gdrive_decrypted
-mkdir -p $path/rclone/decrypted
 # Install Rclone
 ## as seen here https://rclone.org/install/#linux-installation-from-precompiled-binary
 cd /tmp
