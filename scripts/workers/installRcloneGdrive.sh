@@ -1,5 +1,4 @@
 #!/bin/bash
-
 path=$(cat /opt/toolbox/userconfigs/path)
 
 # Install Rclone
@@ -31,6 +30,7 @@ EOF
 
 mkdir -p /root/.config/rclone/ 1>/dev/null 2>&1
 cp ~/.config/rclone/rclone.conf /root/.config/rclone/ 1>/dev/null 2>&1
+chown 1000:1000 ~/.config/rclone/rclone.conf
 
 ## Gdrive Part
 
