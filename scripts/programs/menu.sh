@@ -33,7 +33,8 @@ case $CHOICE in
                 dialog --stdout --title "GDrive-Version? " \
                     --yesno "\nDo you want to create a folder structure for gdrive encrytion usage?" 0 0;
                 then  
-                    dialog --infobox "Rclone config will show up soon" 3 35
+                    dialog --infobox "Check Wiki github for more naming instructions!\nRclone config will show up soon" 4 55
+                    sleep 2
                     chmod +x /opt/toolbox/scripts/workers/installRcloneGdrive.sh
                     /opt/toolbox/scripts/workers/installRcloneGdrive.sh
             else
