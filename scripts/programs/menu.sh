@@ -3,7 +3,8 @@ export NCURSES_NO_UTF8_ACS=1
 clear
 
 OPTIONS=(O "Ombi"
-         P "Portainer"
+         Pl "PlexDrive"
+         Po "Portainer"
          Rc "Rclone"
          Re "Resilio"
          Ru "rutorrent"
@@ -27,7 +28,14 @@ case $CHOICE in
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
-        P)
+        Pl)
+            chmod +x /opt/toolbox/scripts/workers/installPlexDrive.sh
+            /opt/toolbox/scripts/workers/installPlexDrive.sh
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+
+        Po)
             tool=Portainer
             program=portainer
             dialog --infobox "Installing: $tool" 3 30

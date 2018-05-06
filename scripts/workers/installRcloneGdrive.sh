@@ -30,17 +30,177 @@ EOF
 
 mkdir -p /root/.config/rclone/ 1>/dev/null 2>&1
 cp ~/.config/rclone/rclone.conf /root/.config/rclone/ 1>/dev/null 2>&1
-chown 1000:1000 ~/.config/rclone/rclone.conf
+chown 1000:1000 ~/.config/rclone/rclone.conf 1>/dev/null 2>&1
 
 ## Gdrive Part
-mkdir -p /opt/toolbox/userscripts
-mkdir -p $pathr/clone/.gdrive
-mkdir -p $pathr/clone/.gdrive_decrypted
-mkdir -p $path/rclone/decrypted
 
-tee "/opt/toolbox/userscripts/rclone.sh" > /dev/null <<EOF
+
+systemctl stop rcloneGdrive 1>/dev/null 2>&1
+systemctl stop rcloneGdriveDecrypt 1>/dev/null 2>&1
+systemctl stop rcloneDecrypted 1>/dev/null 2>&1
+systemctl stop rclonePlexDrive 1>/dev/null 2>&1
+systemctl stop rcloneUploadEncrypted 1>/dev/null 2>&1
+systemctl stop plexdrive 1>/dev/null 2>&1
+
+mkdir -p /opt/toolbox/userscripts
+mkdir -p $path/rclone/.gdrive
+mkdir -p $path/rclone/.gdrive_decrypted
+mkdir -p $path/rclone/decrypted
+mkdir -p $path/rclone/uploadEncrypted
+mkdir -p $path/rclone/unionfs
+chown 1000:1000 $path/rclone -R 1>/dev/null 2>&1
+
+
+
+
+###########################################
+##Mount GDRIVE
+###########################################
+tee "/opt/toolbox/userscripts/rcloneGdrive.sh" > /dev/null <<EOF
 #!/bin/bash
-rclone --uid=1000 --gid=1000 --allow-non-empty --allow-other mount gdrive: $path/rclone/.gdrive --bwlimit 8650k --size-only
+rclone --uid=1000 --gid=1000 --allow-non-empty --allow-other mount gdrive: $path/rclone/.gdrive --bwlimit 8500k --size-only
 EOF
 
-#wip . nt 
+chmod 775 /opt/toolbox/userscripts/rcloneGdrive.sh
+
+tee "/etc/systemd/system/rcloneGdrive.service" > /dev/null <<EOF
+[Unit]
+Description=RCloneMounting
+After=multi-user.target
+[Service]
+Type=simple
+User=0
+Group=0
+ExecStart=/bin/bash /opt/toolbox/userscripts/rcloneGdrive.sh
+ExecStop=/bin/fusermount -uz $path/rclone/.gdrive
+TimeoutStopSec=20
+KillMode=process
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+
+###########################################
+##Decrypt Gdrive and Mount
+###########################################
+tee "/opt/toolbox/userscripts/rcloneGdriveDecrypt.sh" > /dev/null <<EOF
+#!/bin/bash
+rclone --uid=1000 --gid=1000 --allow-non-empty --allow-other mount gdrive_decrypted: $path/rclone/.gdrive_decrypted --bwlimit 8500k --size-only
+EOF
+
+chmod 775 /opt/toolbox/userscripts/rcloneGdriveDecrypt.sh
+
+tee "/etc/systemd/system/rcloneGdriveDecrypt.service" > /dev/null <<EOF
+[Unit]
+Description=RCloneMounting
+After=multi-user.target
+[Service]
+Type=simple
+User=0
+Group=0
+ExecStart=/bin/bash /opt/toolbox/userscripts/rcloneGdriveDecrypt.sh
+ExecStop=/bin/fusermount -uz $path/rclone/.gdrive_decrypted
+TimeoutStopSec=20
+KillMode=process
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+
+###########################################
+##Decrypt Gdrive and Mount
+###########################################
+tee "/opt/toolbox/userscripts/rcloneDecrypted.sh" > /dev/null <<EOF
+#!/bin/bash
+rclone --uid=1000 --gid=1000 --allow-non-empty --allow-other mount decrypted: $path/rclone/decrypted --bwlimit 8500k --size-only
+EOF
+
+chmod 775 /opt/toolbox/userscripts/rcloneDecrypted.sh
+
+
+tee "/etc/systemd/system/rcloneDecrypted.service" > /dev/null <<EOF
+[Unit]
+Description=RCloneMounting
+After=multi-user.target
+[Service]
+Type=simple
+User=0
+Group=0
+ExecStart=/bin/bash /opt/toolbox/userscripts/rcloneDecrypted.sh
+ExecStop=/bin/fusermount -uz $path/rclone/decrypted
+TimeoutStopSec=20
+KillMode=process
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+
+###########################################
+## PlexDrive Mounting
+###########################################
+tee "/etc/systemd/system/rclonePlexDrive.service" > /dev/null <<EOF
+[Unit]
+Description=UnionMounting
+Requires=plexdrive.service
+After=multi-user.target plexdrive.service
+RequiresMountsFor= $path/rclone/.plexdrive
+[Service]
+Type=simple
+User=0
+Group=0
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/unionfs -o cow,allow_other,nonempty $path/rclone/uploadEncrypted=RW:$path/rclone/decrypted=RO $path/rclone/unionfs
+ExecStop=/bin/fusermount -uz $path/rclone/unionfs
+TimeoutStopSec=20
+KillMode=process
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+
+###########################################
+## Upload Service Encrypted
+###########################################
+tee "/opt/toolbox/userscripts/rcloneUploadEncrypted.sh" > /dev/null <<EOF
+#!/bin/bash
+rclone move --bwlimit 10M --exclude='**.partial~' --exclude="**_HIDDEN~" --exclude=".unionfs/**" --exclude=".unionfs-fuse/**" --log-level INFO $path/rclone/uploadEncrypted gdrive_decrypted:/
+sleep 480
+
+find "$path/rclone/uploadEncrypted" -mindepth 2 -type d -empty -delete
+done
+EOF
+
+chmod 775 /opt/toolbox/userscripts/rcloneUploadEncrypted.sh
+
+
+tee "/etc/systemd/system/rcloneUploadEncrypted.service" > /dev/null <<EOF
+[Unit]
+Description=RCloneMounting
+After=multi-user.target
+[Service]
+Type=simple
+User=0
+Group=0
+ExecStart=/bin/bash /opt/toolbox/userscripts/rcloneUploadEncrypted.sh
+TimeoutStopSec=20
+KillMode=process
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+system daemon reload 1>/dev/null 2>&1
+
+systemctl enable rcloneGdrive 1>/dev/null 2>&1
+systemctl enable rcloneGdriveDecrypt 1>/dev/null 2>&1
+systemctl enable rcloneDecrypted 1>/dev/null 2>&1
+systemctl enable rclonePlexDrive 1>/dev/null 2>&1
+systemctl enable rcloneUploadEncrypted 1>/dev/null 2>&1
+
+
+systemctl restart rcloneGdrive 1>/dev/null 2>&1
+systemctl restart rcloneGdriveDecrypt 1>/dev/null 2>&1
+systemctl restart rcloneDecrypted 1>/dev/null 2>&1
+systemctl restart rclonePlexDrive 1>/dev/null 2>&1
+systemctl restart rcloneUploadEncrypted 1>/dev/null 2>&1
