@@ -3,6 +3,7 @@ export NCURSES_NO_UTF8_ACS=1
 clear
 
 OPTIONS=(O "Ombi"
+         P "Portainer"
          Rc "Rclone"
          Re "Resilio"
          Ru "rutorrent"
@@ -21,6 +22,14 @@ case $CHOICE in
         O) 
             tool=Ombi
             program=ombi
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        P)
+            tool=Portainer
+            program=portainer
             dialog --infobox "Installing: $tool" 3 30
             ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
             sleep 2
