@@ -33,9 +33,14 @@ cp ~/.config/rclone/rclone.conf /root/.config/rclone/ 1>/dev/null 2>&1
 chown 1000:1000 ~/.config/rclone/rclone.conf
 
 ## Gdrive Part
-
-mkdir -p $path/rclone/.gdrive
-mkdir -p $path/rclone/.gdrive_decrypted
+mkdir -p /opt/toolbox/userscripts
+mkdir -p $pathr/clone/.gdrive
+mkdir -p $pathr/clone/.gdrive_decrypted
 mkdir -p $path/rclone/decrypted
+
+tee "/opt/toolbox/userscripts/rclone.sh" > /dev/null <<EOF
+#!/bin/bash
+rclone --uid=1000 --gid=1000 --allow-non-empty --allow-other mount gdrive: $path/rclone/.gdrive --bwlimit 8650k --size-only
+EOF
 
 #wip . nt 

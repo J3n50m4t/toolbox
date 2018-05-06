@@ -1,3 +1,4 @@
+userscripts/*
 userconfigs/*
 test/*
 ansiblescripts/toolbox.retry

@@ -10,7 +10,7 @@
 
 - name: Creates directory
   file:
-    path: "{{path.stdout}}tools/sabnzbd"
+    path: "{{path.stdout}}/tools/sabnzbd"
     state: directory
     owner: 1000
     group: 1000
@@ -26,9 +26,9 @@
     published_ports:
       - "8080:8080"
     volumes:
-      - "{{path.stdout}}tools/sabnzbd:/config"
-      - "{{path.stdout}}downloads/sab/complete:/downloads"
-      - "{{path.stdout}}downloads/sab/incomplete:/incomplete-downloads"
+      - "{{path.stdout}}/tools/sabnzbd:/config"
+      - "{{path.stdout}}/downloads/sab/complete:/downloads"
+      - "{{path.stdout}}/downloads/sab/incomplete:/incomplete-downloads"
       - /etc/localtime:/etc/localtime:ro
     env:
       PUID: "1000"

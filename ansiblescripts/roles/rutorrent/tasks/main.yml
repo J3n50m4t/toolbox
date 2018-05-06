@@ -10,7 +10,7 @@
 
 - name: Creates directory
   file:
-    path: "{{path.stdout}}tools/rutorrent"
+    path: "{{path.stdout}}/tools/rutorrent"
     state: directory
     owner: 1000
     group: 1000
@@ -29,8 +29,8 @@
       # - "6881:6881/udp"
       - "5000:5000"
     volumes:
-      - "{{path.stdout}}tools/rutorrent:/config"
-      - "{{path.stdout}}downloads/rutorrents:/sync"
+      - "{{path.stdout}}/tools/rutorrent:/config"
+      - "{{path.stdout}}/downloads/rutorrents:/sync"
       - /etc/localtime:/etc/localtime:ro
     env:
       PUID: "1000"

@@ -10,7 +10,7 @@
 
 - name: Creates directory
   file:
-    path: "{{path.stdout}}tools/resilio"
+    path: "{{path.stdout}}/tools/resilio"
     state: directory
     owner: 1000
     group: 1000
@@ -27,7 +27,7 @@
       - "8888:8888"
       - "55555:55555"
     volumes:
-      - "{{path.stdout}}tools/resilio:/config"
+      - "{{path.stdout}}/tools/resilio:/config"
       - "{{path.stdout}}:/sync"
       - /etc/localtime:/etc/localtime:ro
     env:

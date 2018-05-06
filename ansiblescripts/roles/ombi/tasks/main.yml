@@ -10,7 +10,7 @@
 
 - name: Creates directory
   file:
-    path: "{{path.stdout}}tools/ombi"
+    path: "{{path.stdout}}/tools/ombi"
     state: directory
     owner: 1000
     group: 1000
@@ -26,7 +26,7 @@
     published_ports:
       - "3579:3579"
     volumes:
-      - "{{path.stdout}}tools/ombi:/config"
+      - "{{path.stdout}}/tools/ombi:/config"
       - /etc/localtime:/etc/localtime:ro
     env:
       PUID: "1000"
