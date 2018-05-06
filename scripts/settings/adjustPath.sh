@@ -10,7 +10,7 @@ if
 else
     rm /opt/toolbox/userconfigs/path
     touch /opt/toolbox/userconfigs/path
-    dialog --inputbox "Insert you path with a / at the end" 8 45 2>/opt/toolbox/userconfigs/path
+    dialog --inputbox "Insert you path without a / at the end" 8 45 2>/opt/toolbox/userconfigs/path
     path=$(cat /opt/toolbox/userconfigs/path)
     dialog --title "SUCCESS" --infobox "Path changed to $path" 3 45
     /opt/toolbox/scripts/workers/createFolders.sh
