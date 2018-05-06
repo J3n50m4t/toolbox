@@ -10,7 +10,7 @@
 
 - name: Creates directory
   file:
-    path: "{{path.stdout}}tools/ts3server"
+    path: "{{path.stdout}}/tools/ts3server"
     state: directory
     owner: 1000
     group: 1000
@@ -30,7 +30,7 @@
     env:
       TS3SERVER_LICENSE: "accept"
     volumes:
-      - "{{path.stdout}}tools/ts3server:/data"
+      - "{{path.stdout}}/tools/ts3server:/data"
       - /etc/localtime:/etc/localtime:ro
     networks:
       - name: toolbox
