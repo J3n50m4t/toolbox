@@ -41,6 +41,7 @@ OPTIONS=(A "Install Docker and Ansible"
         E "Settings & Tools"
         F "Backup & Restore"
         G "Get Path"
+        U "Update"
         Z "Exit")
 CHOICE=$(dialog --backtitle "toolbox" \
                 --title "toolbox" \
@@ -66,6 +67,10 @@ case $CHOICE in
         path=$(cat /opt/toolbox/userconfigs/path)
         dialog --infobox "Your Path is: $path" 3 45 
         /opt/toolbox/scripts/workers/createFolders.sh ;;
+    U) 
+        dialog --infobox "Getting latest Updates" 3 45 
+        ;;
+    
     Z)
         clear
         exit 0 ;;
