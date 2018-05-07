@@ -43,3 +43,4 @@
       traefik.frontend.redirect.entryPoint: "https"
       traefik.frontend.rule: "Host:ombi.{{domain.stdout}}, wishlist.{{domain.stdout}},requests.{{domain.stdout}}"
       traefik.port: "3579"
+      traefik.docker.network: "toolbox"

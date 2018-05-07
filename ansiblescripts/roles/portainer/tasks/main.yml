@@ -42,3 +42,4 @@
       traefik.frontend.redirect.entryPoint: "https"
       traefik.frontend.rule: "Host:portainer.{{domain.stdout}}"
       traefik.port: "9000"
+      traefik.docker.network: "toolbox"

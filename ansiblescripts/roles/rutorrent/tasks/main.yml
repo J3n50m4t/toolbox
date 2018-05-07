@@ -47,3 +47,4 @@
       traefik.frontend.redirect.entryPoint: "https"
       traefik.frontend.rule: "Host:rutorrent.{{domain.stdout}}"
       traefik.port: "9999"
+      traefik.docker.network: "toolbox"

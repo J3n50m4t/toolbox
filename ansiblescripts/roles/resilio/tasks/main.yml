@@ -46,3 +46,4 @@
       traefik.frontend.redirect.entryPoint: "https"
       traefik.frontend.rule: "Host:resilio.{{domain.stdout}}"
       traefik.port: "8888"
+      traefik.docker.network: "toolbox"
