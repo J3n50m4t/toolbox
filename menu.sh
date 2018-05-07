@@ -71,6 +71,13 @@ case $CHOICE in
         dialog --infobox "Getting latest Updates" 3 45 
         cd /opt/toolbox
         git pull
+        echo "\n\n\n"
+        echo "############################################"
+        echo "###                                      ###"
+        echo "###         restart toolbox              ###"
+        echo "###                                      ###"
+        echo "############################################"
+        exit 0 
         ;;
     
     Z)
