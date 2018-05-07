@@ -36,5 +36,6 @@ EOF
 
 system daemon reload 1>/dev/null 2>&1
 systemctl enable plexdrive 1>/dev/null 2>&1
-
+dialog --infobox "PlexDrive will build your initial Cache in 5s.\nDepending on your Gdrive this can take a long time\nExit with CTRL + C and reboot after.\nYour Systems should be mounted now," 6 55
+sleep 5;
 plexdrive mount --uid=1000 --gid=1000 -v 3 --refresh-interval=1m --chunk-load-threads=8 --chunk-check-threads=8 --chunk-load-ahead=4 --chunk-size=10M --max-chunks=300 --fuse-options=allow_other,read_only,allow_non_empty_mount --config=/root/.plexdrive --cache-file=/root/.plexdrive/cache.bolt $path/rclone/.plexdrive/
