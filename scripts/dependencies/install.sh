@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "0" | dialog --gauge "Updating repo" 10 70 0
-sudo apt-get update
+sudo apt-get update 1>/dev/null 2>&1
 echo "10" | dialog --gauge "Installing docker" 10 70 0
-sudo apt-get install docker docker.io -y 1>/dev/null 2>&1
+sudo apt-get install docker docker.io -y 
 echo "20" | dialog --gauge "Installing ansible" 10 70 0
 sudo apt-get install ansible -y 1>/dev/null 2>&1
 echo "30" | dialog --gauge "Installing Unzip" 10 70 0
