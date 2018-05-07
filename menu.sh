@@ -73,7 +73,7 @@ case $CHOICE in
         git pull
         echo "############################################"
         echo "###                                      ###"
-        echo "###         restart toolbox              ###"
+        echo "###      toolbox updated. run again      ###"
         echo "###                                      ###"
         echo "############################################"
         exit 0 
