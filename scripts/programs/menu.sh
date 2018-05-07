@@ -112,7 +112,8 @@ case $CHOICE in
             ;;
         Z)
             clear
-            exit 0 ;;
+            exit 0
+            ;;
 esac
 
 
