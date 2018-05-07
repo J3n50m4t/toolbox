@@ -77,3 +77,6 @@ case $CHOICE in
         clear
         exit 0 ;;
 esac
+
+
+bash /opt/toolbox/menu.sh
