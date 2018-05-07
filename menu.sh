@@ -68,13 +68,17 @@ case $CHOICE in
         dialog --infobox "Your Path is: $path" 3 45 
         /opt/toolbox/scripts/workers/createFolders.sh ;;
     U) 
-        dialog --infobox "Getting latest Updates" 3 45 
-        ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags updatetoolbox &>/dev/null &
-        echo "############################################"
-        echo "###                                      ###"
-        echo "###      toolbox updated. run again      ###"
-        echo "###                                      ###"
-        echo "############################################"
+        if 
+            dialog --stdout --title "WARNING" \
+                --yesno "\nThis will Update Toolbox. Code adjustments will be lost\n Settings will stay. Proceed?" 0 0;
+            then  
+                dialog --infobox "Getting latest Updates" 3 45 
+                ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags updatetoolbox &>/dev/null &
+                exit 0
+        else
+            clear
+            /opt/toolbox/menu.sh
+        fi
         exit 0 
         ;;
     
