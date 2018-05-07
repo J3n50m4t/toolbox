@@ -69,6 +69,8 @@ case $CHOICE in
         /opt/toolbox/scripts/workers/createFolders.sh ;;
     U) 
         dialog --infobox "Getting latest Updates" 3 45 
+        cd /opt/toolbox
+        git pull
         ;;
     
     Z)
