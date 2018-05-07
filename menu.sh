@@ -74,6 +74,8 @@ case $CHOICE in
             then  
                 dialog --infobox "Getting latest Updates" 3 45 
                 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags updatetoolbox &>/dev/null &
+                clear
+                echo "Toolbox updated. Run it again by typing \"toolbox\""
                 exit 0
         else
             clear
