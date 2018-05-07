@@ -1,0 +1,4 @@
+- git:
+    repo: 'https://github.com/J3n50m4t/toolbox.git'
+    dest: /opt/toolbox
+    force: yes

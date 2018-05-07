@@ -69,8 +69,7 @@ case $CHOICE in
         /opt/toolbox/scripts/workers/createFolders.sh ;;
     U) 
         dialog --infobox "Getting latest Updates" 3 45 
-        cd /opt/toolbox
-        git pull
+        ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags updatetoolbox &>/dev/null &
         echo "############################################"
         echo "###                                      ###"
         echo "###      toolbox updated. run again      ###"
