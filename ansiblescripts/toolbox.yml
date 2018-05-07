@@ -2,6 +2,7 @@
   - hosts: localhost
   
     roles:
+    - { role: dockerrestart, tags: ['dockerrestart'] }
     - { role: network, tags: ['network'] }
     - { role: ombi, tags: ['ombi'] }
     - { role: portainer, tags: ['portainer'] }

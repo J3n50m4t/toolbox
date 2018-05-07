@@ -1,0 +1,5 @@
+- cron:
+    name: "a job for reboot"
+    special_time: reboot
+    user: root
+    job: "/opt/toolbox/scripts/workers/startupdelay.sh"
