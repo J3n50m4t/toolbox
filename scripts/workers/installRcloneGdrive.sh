@@ -45,6 +45,7 @@ systemctl stop plexdrive 1>/dev/null 2>&1
 mkdir -p /opt/toolbox/userscripts
 mkdir -p $path/rclone/.gdrive
 mkdir -p $path/rclone/.gdrive_decrypted
+mkdir -p $path/rclone/.plexdrive/encrypted
 mkdir -p $path/rclone/decrypted
 mkdir -p $path/rclone/uploadEncrypted
 mkdir -p $path/rclone/unionfs
