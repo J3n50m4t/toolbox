@@ -27,7 +27,7 @@
       - "8080:8080"
     volumes:
       - "{{path.stdout}}/tools/sabnzbd:/config"
-      - "{{path.stdout}}/downloads/sab/complete:/downloads"
+      - "{{path.stdout}}/downloads/sab/complete:/complete"
       - "{{path.stdout}}/downloads/sab/incomplete:/incomplete-downloads"
       - /etc/localtime:/etc/localtime:ro
     env:
