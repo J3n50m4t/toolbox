@@ -8,7 +8,7 @@
     name: netdata
     state: absent
 
-- name: Deploy ombnetdatai Container
+- name: Deploy netdata Container
   docker_container:
     name: netdata
     image: titpetric/netdata
