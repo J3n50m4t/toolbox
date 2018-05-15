@@ -30,6 +30,7 @@
       - /etc/localtime:/etc/localtime:ro
       - "{{path.stdout}}/downloads/sab/complete:/complete"
       - "{{path.stdout}}/rutorrents:/downloads"
+      - "{{path.stdout}}/rclone/unionfs:/unionfs"
     env:
       PUID: "1000"
       PGID: "1000"
