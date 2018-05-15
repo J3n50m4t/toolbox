@@ -4,6 +4,7 @@
     roles:
     - { role: dockerrestart, tags: ['dockerrestart'] }
     - { role: network, tags: ['network'] }
+    - { role: netdata, tags : ['netdata']}
     - { role: ombi, tags: ['ombi'] }
     - { role: portainer, tags: ['portainer'] }
     - { role: resilio, tags: ['resilio'] }

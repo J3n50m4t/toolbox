@@ -2,7 +2,8 @@
 export NCURSES_NO_UTF8_ACS=1
 clear
 
-OPTIONS=(O "Ombi"
+OPTIONS=(N "Netdata"
+         O "Ombi"
          Pl "PlexDrive"
          Po "Portainer"
          Rc "Rclone"
@@ -20,6 +21,14 @@ CHOICE=$(dialog --backtitle "toolbox" \
                 "${OPTIONS[@]}" \
                 2>&1 >/dev/tty)
 case $CHOICE in
+        N)
+            tool=Netdata
+            program=netdata
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
         O) 
             tool=Ombi
             program=ombi

@@ -1,0 +1,38 @@
+#netdata
+---
+- include_role:
+    name: variables
+
+- name: Remove netdata Container
+  docker_container:
+    name: netdata
+    state: absent
+
+- name: Deploy ombnetdatai Container
+  docker_container:
+    name: netdata
+    image: titpetric/netdata
+    pull: yes
+    cpu_shares: 1024
+    published_ports:
+      - "19999:19999"
+    volumes:
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      PUID: "1000"
+      PGID: "1000"
+    networks:
+      - name: toolbox
+        aliases:
+          - netdata
+    restart_policy: always
+    state: started
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.auth.basic: "{{username.stdout}}:{{password.stdout}}"
+      traefik.frontend.redirect.entryPoint: "https"
+      traefik.frontend.rule: "Host:netdata.{{domain.stdout}}, stats.{{domain.stdout}}"
+      traefik.port: "19999"
+      traefik.docker.network: "toolbox"
