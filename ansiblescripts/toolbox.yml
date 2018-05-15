@@ -10,6 +10,7 @@
     - { role: resilio, tags: ['resilio'] }
     - { role: rutorrent, tags: ['rutorrent'] }
     - { role: sabnzbd, tags: ['sabnzbd'] }
+    - { role: sonarr, tags: ['sonarr'] }
     - { role: tautulli, tags: ['tautulli'] }
     - { role: ts3server, tags: ['ts3server'] }
     - { role: updatetoolbox, tags: ['updatetoolbox'] }

@@ -9,7 +9,8 @@ OPTIONS=(N "Netdata"
          Rc "Rclone"
          Re "Resilio"
          Ru "rutorrent"
-         S "Sabnzbd"
+         Sa "Sabnzbd"
+         So "Sonarr"
          Ta "Tautulli/Plexpy"
          TL "The Lounge (WebIRC)"
          TS3 "Teamspeak3"
@@ -87,7 +88,7 @@ case $CHOICE in
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
-        S)
+        Sa)
             tool=Sabnzbd
             program=sabnzbd
             dialog --infobox "Installing: $tool" 3 30
@@ -95,6 +96,14 @@ case $CHOICE in
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
+        So)
+            tool=Sonarr
+            program=sonarr
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;    
         Ta) 
             tool=Tautulli
             program=tautulli
