@@ -18,5 +18,5 @@ echo "Dialog install"
    sudo echo "export NCURSES_NO_UTF8_ACS=1" >> /etc/bash.bashrc.local
 fi
 
-
- sudo bash /opt/toolbox/menu.sh
+sudo chmod 750 -R /opt/toolbox
+sudo bash /opt/toolbox/menu.sh
