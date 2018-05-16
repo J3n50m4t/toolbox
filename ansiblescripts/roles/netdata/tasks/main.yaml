@@ -14,8 +14,8 @@
     image: titpetric/netdata
     pull: yes
     cpu_shares: 1024
-    published_ports:
-      - "19999:19999"
+    # published_ports:
+    #   - "19999:19999"
     volumes:
       - "/proc:/host/proc:ro"
       - "/sys:/host/sys:ro"
