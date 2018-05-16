@@ -40,6 +40,6 @@
     labels:
       traefik.enable: "true"
       traefik.frontend.redirect.entryPoint: "https"
-      traefik.frontend.rule: "Host:portainer.{{domain.stdout}}"
+      traefik.frontend.rule: "Host:portainer.{{domain.stdout}}, config.{{domain.stdout}}"
       traefik.port: "9000"
       traefik.docker.network: "toolbox"
