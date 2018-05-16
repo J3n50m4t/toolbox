@@ -1,0 +1,77 @@
+#plex
+---
+- include_role:
+    name: variables
+
+- name: Remove Plex Container
+  docker_container:
+    name: ombi
+    state: absent
+
+- name: Creates directory
+  file:
+    path: "{{path.stdout}}/tools/plex"
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0775
+    recurse: yes
+
+- name: Deploy Plex Container
+  docker_container:
+    name: plex
+    image: "plexinc/pms-docker"
+    pull: yes
+    published_ports:
+      - "32400:32400/tcp"
+      - "3005:3005/tcp"
+      - "8324:8324/tcp"
+      - "32469:32469/tcp"
+      - "1900:1900/udp"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+      - "33400:33400/tcp"
+      - "33443:33443/tcp"
+    env:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+      PLEX_CLAIM: "inserthere"
+    networks:
+      - name: toolbox
+        aliases:
+          - plex
+    expose:
+      - 32400
+    volumes:
+      - "/tmp:/tmp"
+      - "{{path.stdout}}/tools/plex/database:/config"
+      - "{{path.stdout}}/tools/plex/transcode:/transcode"
+      - "{{path.stdout}}/rclone/unionfs:/unionfs"
+      - "/etc/localtime:/etc/localtime:ro"
+    cpu_shares: 1024
+    restart_policy: always
+    state: started
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.rule: "Host:plex.{{domain.stdout}}"
+      traefik.port: "32400"
+      traefik.frontend.entryPoints: "http,https"
+
+- name: Create Basic Directories
+  file: "path={{item}} state=directory mode=0775 owner=1000 group=1000"
+  with_items:
+      - "{{path.stdout}}/tools/plex/database/Library/Application Support/Plex Media Server/Plug-ins"
+
+- name: WebTools
+  unarchive:
+    src: https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip
+    dest: "{{path.stdout}}/tools/plex/database/Library/Application Support/Plex Media Server/Plug-ins"
+    keep_newer: no
+    owner: 1000
+    group: 1000
+    mode: 0775
+    copy: no
+  tags:
+    - webtools

@@ -4,7 +4,8 @@ clear
 
 OPTIONS=(N "Netdata"
          O "Ombi"
-         Pl "PlexDrive"
+         P "Plex"
+         Pd "PlexDrive"
          Po "Portainer"
          Rc "Rclone"
          Re "Resilio"
@@ -38,13 +39,20 @@ case $CHOICE in
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
-        Pl)
+        P)
+            tool=Plex
+            program=plex
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        Pd)
             chmod +x /opt/toolbox/scripts/workers/installPlexDrive.sh
             /opt/toolbox/scripts/workers/installPlexDrive.sh
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
-
         Po)
             tool=Portainer
             program=portainer
