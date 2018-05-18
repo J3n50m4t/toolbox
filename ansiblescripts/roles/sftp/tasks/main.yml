@@ -1,0 +1,38 @@
+#sftp
+---
+- include_role:
+    name: variables
+
+- name: Remove sftp Container
+  docker_container:
+    name: sftp
+    state: absent
+
+- name: Creates directory
+  file:
+    path: "{{path.stdout}}/tools/sftp"
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0775
+    recurse: yes
+
+- name: Deploy sftp Container
+  docker_container:
+    name: sftp
+    image: atmoz/sftp
+    pull: yes
+    cpu_shares: 512
+    published_ports:
+      - "2222:22"
+    privileged: yes
+    volumes:
+     - "{{path.stdout}}/tools/sftp/users.conf:/etc/sftp/users.conf:ro"
+     - "{{path.stdout}}/tools/rclone/unionfs/:/sftp_root/UnionF"
+    networks:
+      - name: toolbox
+        aliases:
+          - sftp
+    restart_policy: always
+    state: started
+    

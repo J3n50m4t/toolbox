@@ -11,10 +11,11 @@
     - { role: resilio, tags: ['resilio'] }
     - { role: rutorrent, tags: ['rutorrent'] }
     - { role: sabnzbd, tags: ['sabnzbd'] }
+    - { role: sftp, tags: ['sftp'] }
     - { role: sonarr, tags: ['sonarr'] }
     - { role: tautulli, tags: ['tautulli'] }
+    - { role: traefik, tags: ['traefik'] }
     - { role: ts3server, tags: ['ts3server'] }
     - { role: updatetoolbox, tags: ['updatetoolbox'] }
     
     #- { role: thelounge, tags: ['thelounge'] }
-    - { role: traefik, tags: ['traefik'] }
