@@ -32,8 +32,8 @@
     image: atmoz/sftp
     pull: yes
     cpu_shares: 512
-    published_ports:
-      - "2222:22"
+    ports:
+      - 0.0.0.0:2222:22
     privileged: yes
     volumes:
      - "{{path.stdout}}/tools/sftp/users.conf:/etc/sftp/users.conf:ro"
