@@ -37,8 +37,8 @@
     privileged: yes
     volumes:
      - "{{path.stdout}}/tools/sftp/users.conf:/etc/sftp/users.conf:ro"
-     - "{{path.stdout}}/tools/rclone:/home/admin/rclone"
-     - "/home:/home/admin/home"
+     - "{{path.stdout}}/tools/rclone:/home/admin/rclone:ro"
+     - "/home:/home/admin/home:ro"
     networks:
       - name: toolbox
         aliases:
