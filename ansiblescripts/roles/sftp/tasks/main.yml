@@ -20,7 +20,7 @@
 - name: Installing User
   template:
     src: users.conf
-    dest: "{{path.stdout}}/tools/sftp/users.conf"
+    dest: "{{path.stdout}}/tools/sftp/"
     force: yes
     mode: 0750
     owner: 1000
