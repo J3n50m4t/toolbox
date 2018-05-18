@@ -36,7 +36,7 @@
       - 0.0.0.0:2222:22
     privileged: yes
     volumes:
-     - "{{path.stdout}}/tools/sftp/:/etc/sftp/"
+     - "{{path.stdout}}/tools/sftp/user.conf/:/etc/sftp/"
      - "{{path.stdout}}/tools/rclone/unionfs/:/sftp_root/UnionF"
     networks:
       - name: toolbox
