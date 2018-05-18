@@ -17,6 +17,15 @@
     mode: 0775
     recurse: yes
 
+- name: Installing User
+  template:
+    src: user.conf
+    dest: "{{path.stdout}}/tools/sftp/user.conf"
+    force: yes
+    mode: 0600
+    owner: 1000
+    group: 1000
+
 - name: Deploy sftp Container
   docker_container:
     name: sftp
