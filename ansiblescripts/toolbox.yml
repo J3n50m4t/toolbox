@@ -17,4 +17,4 @@
     - { role: updatetoolbox, tags: ['updatetoolbox'] }
     
     #- { role: thelounge, tags: ['thelounge'] }
-    #- { role: traefik, tags: ['traefik'] }
+    - { role: traefik, tags: ['traefik'] }

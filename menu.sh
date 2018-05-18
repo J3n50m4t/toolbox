@@ -8,7 +8,24 @@ file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
             echo "ok"
     else
         dialog --inputbox "Insert your domin. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/domain
+        
 fi
+file="/opt/toolbox/userconfigs/cfmail" 1>/dev/null 2>&1
+    if [ -e "$file" ]
+        then 
+            echo "ok"
+    else
+        dialog --inputbox "Insert your Cloudflare-Email. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/cfmail
+        
+fi
+file="/opt/toolbox/userconfigs/cfapi" 1>/dev/null 2>&1
+    if [ -e "$file" ]
+        then 
+            echo "ok"
+    else
+        dialog --inputbox "Insert your Cloudflare-Api-Key. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/cfapi
+        
+fi   
 
 file="/opt/toolbox/userconfigs/path" 1>/dev/null 2>&1
     if [ -e "$file" ]

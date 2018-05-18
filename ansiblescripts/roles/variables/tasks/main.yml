@@ -18,3 +18,13 @@
   shell: "cat /opt/toolbox/userconfigs/password"
   register: password
   ignore_errors: True
+
+- name: Set E-Mail
+  shell: "cat /opt/toolbox/userconfigs/cfmail"
+  register: cfmail
+  ignore_errors: True
+
+- name: Set Cloudflare Api
+  shell: "cat /opt/toolbox/userconfigs/cfapi"
+  register: cfapi
+  ignore_errors: True

@@ -21,6 +21,7 @@ sudo pip install docker-py 1>/dev/null 2>&1
 echo "90" | dialog --gauge "Setting up docker and installing Portainer" 10 70 0
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags network &>/dev/null &
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags portainer &>/dev/null &
+ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags traefik &>/dev/null &
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags dockerrestart &>/dev/null &
 echo "100" | dialog --gauge "Everything installed successfuly, going back to main menu" 10 70 0
 sleep 2
