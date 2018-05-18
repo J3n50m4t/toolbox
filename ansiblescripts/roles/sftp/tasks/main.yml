@@ -17,12 +17,12 @@
     mode: 0775
     recurse: yes
 
-- name: Installing User
+- name: Installing Users
   template:
     src: users.conf
-    dest: "{{path.stdout}}/tools/sftp/"
+    dest: "{{path.stdout}}/tools/sftp/users.conf"
     force: yes
-    mode: 0750
+    mode: 0600
     owner: 1000
     group: 1000
 
@@ -36,7 +36,7 @@
       - 0.0.0.0:2222:22
     privileged: yes
     volumes:
-     - "{{path.stdout}}/tools/sftp/users.conf:/etc/sftp/users.conf:ro"
+     - "{{path.stdout}}/tools/sftp/users.conf:/etc/sftp/users.conf"
      - "{{path.stdout}}/tools/rclone/unionfs/:/sftp_root/UnionF"
     networks:
       - name: toolbox
