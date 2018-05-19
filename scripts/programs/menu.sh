@@ -15,6 +15,7 @@ OPTIONS=(N "Netdata"
          Ta "Tautulli/Plexpy"
          TL "The Lounge (WebIRC)"
          TS3 "Teamspeak3"
+         Ub "Ubooquity"
          Z "Exit")
 CHOICE=$(dialog --backtitle "toolbox" \
                 --title "toolbox" \
@@ -131,6 +132,14 @@ case $CHOICE in
         TS3)
             tool=Teamspeak3
             program=ts3server
+            dialog --infobox "Installing: $tool" 3 30
+            ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        Ub)
+            tool=Ubooquity
+            program=ubooquity
             dialog --infobox "Installing: $tool" 3 30
             ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags $program &>/dev/null &
             sleep 2
