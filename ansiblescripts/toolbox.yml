@@ -17,5 +17,8 @@
     - { role: traefik, tags: ['traefik'] }
     - { role: ts3server, tags: ['ts3server'] }
     - { role: updatetoolbox, tags: ['updatetoolbox'] }
+    - { role: ubooquity, tags: ['ubooquity'] }
+    
+   
     
     #- { role: thelounge, tags: ['thelounge'] }
