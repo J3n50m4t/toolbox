@@ -1,3 +1,4 @@
+#Ubooquity
 ---
 - include_role:
     name: variables
@@ -36,9 +37,9 @@
           - ubooquity
     volumes:
     - "{{path.stdout}}/tools/ubooquity:/config"
-    - "{path.stdout}}/rclone/unionfs/documents/books:/books"
-    - "{path.stdout}}/rclone/unionfs/documents/comics:/comics"
-    - "{path.stdout}}/rclone/unionfs/documents/files:/files"
+    - "{{path.stdout}}/rclone/unionfs/documents/books:/books"
+    - "{{path.stdout}}/rclone/unionfs/documents/comics:/comics"
+    - "{{path.stdout}}/rclone/unionfs/documents/files:/files"
     - /etc/localtime:/etc/localtime:ro
     restart_policy: always
     state: started
