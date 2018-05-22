@@ -8,6 +8,7 @@ OPTIONS=(N "Netdata"
          Pd "PlexDrive"
          Po "Portainer"
          Rc "Rclone"
+         Rc2 "Rclone 2nd Gdrive"
          Re "Resilio"
          Ru "rutorrent"
          Sa "Sabnzbd"
@@ -78,6 +79,14 @@ case $CHOICE in
                 chmod +x /opt/toolbox/scripts/workers/installRclone.sh
                 /opt/toolbox/scripts/workers/installRclone.sh
             fi
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        Rc2)
+            tool=Rclone2
+            dialog --infobox "Installing: $tool" 3 30
+            chmod +x /opt/toolbox/scripts/workers/installRcloneGdrive2.sh
+            /opt/toolbox/scripts/workers/installRcloneGdrive2.sh
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
