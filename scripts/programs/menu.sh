@@ -6,6 +6,7 @@ OPTIONS=(N "Netdata"
          O "Ombi"
          P "Plex"
          Pd "PlexDrive"
+         Pd2 "PlexDrive for 2nd Gdrive"
          Po "Portainer"
          Rc "Rclone"
          Rc2 "Rclone 2nd Gdrive"
@@ -52,6 +53,12 @@ case $CHOICE in
         Pd)
             chmod +x /opt/toolbox/scripts/workers/installPlexDrive.sh
             /opt/toolbox/scripts/workers/installPlexDrive.sh
+            sleep 2
+            dialog --msgbox "\n Installed $tool" 0 0
+            ;;
+        Pd2)
+            chmod +x /opt/toolbox/scripts/workers/installPlexDrive2.sh
+            /opt/toolbox/scripts/workers/installPlexDrive2.sh
             sleep 2
             dialog --msgbox "\n Installed $tool" 0 0
             ;;
