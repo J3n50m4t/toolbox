@@ -64,8 +64,8 @@
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - "{{path.stdout}}/traefik:/etc/traefik:ro"
-      - "{{path.stdout}}/traefik/acme:/etc/traefik/acme"
+      - "{{path.stdout}}/tools/traefik:/etc/traefik:ro"
+      - "{{path.stdout}}/tools/traefik/acme:/etc/traefik/acme"
     restart_policy: always
     state: started
     networks:
