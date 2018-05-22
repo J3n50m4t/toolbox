@@ -64,7 +64,7 @@
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - "{{path.stdout}}/traefik/traefik.toml:/etc/traefik/traefik.toml:ro"
+      - "{{path.stdout}}/traefik:/etc/traefik:ro"
       - "{{path.stdout}}/traefik/acme:/etc/traefik/acme"
     restart_policy: always
     state: started
