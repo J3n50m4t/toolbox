@@ -49,6 +49,7 @@
       - "{{path.stdout}}/tools/plex/database:/config"
       - "{{path.stdout}}/tools/plex/transcode:/transcode"
       - "{{path.stdout}}/rclone/unionfs:/unionfs"
+      - "{{path.stdout}}/rclone2/unionfs:/unionfs2"
       - "/etc/localtime:/etc/localtime:ro"
     cpu_shares: 1024
     restart_policy: always
