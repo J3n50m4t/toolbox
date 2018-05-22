@@ -164,6 +164,8 @@ EOF
 ###########################################
 tee "/opt/toolbox/userscripts/rcloneUploadEncrypted2.sh" > /dev/null <<EOF
 #!/bin/bash
+while true                                                                                                                                                                                                                                                                                                                                                                                   
+do 
 rclone move --bwlimit 10M --exclude='**.partial~' --exclude="**_HIDDEN~" --exclude=".unionfs/**" --exclude=".unionfs-fuse/**" --log-level INFO $path/rclone2/uploadEncrypted gdrive_decrypted2:/ 1>/var/log/toolbox/uploadEncrypted2 2>&1
 sleep 480
 
