@@ -19,6 +19,8 @@ sudo apt-get install python-pip -y 1>/dev/null 2>&1
 echo "80" | dialog --gauge "Installing docker-py" 10 70 0
 sudo pip install docker-py 1>/dev/null 2>&1
 echo "90" | dialog --gauge "Setting up docker and installing Portainer" 10 70 0
+sudo groupadd docker
+sudo usermod -aG docker $USER
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags network &>/dev/null &
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags portainer &>/dev/null &
 ansible-playbook /opt/toolbox/ansiblescripts/toolbox.yml --tags traefik &>/dev/null &
