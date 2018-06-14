@@ -7,7 +7,7 @@ file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        dialog --inputbox "Insert your domin. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/domain
+        dialog --inputbox "Insert your domain. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/domain
         
 fi
 file="/opt/toolbox/userconfigs/cfmail" 1>/dev/null 2>&1
