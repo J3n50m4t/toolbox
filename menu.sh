@@ -24,7 +24,7 @@ file="/opt/toolbox/userconfigs/cfmail" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        dialog --inputbox "Insert your Cloudflare-Email. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/cfmail
+        dialog --inputbox "Insert your Cloudflare-Email. If you don't want one, leave it empty. Used for Domainauth" 8 45 2>/opt/toolbox/userconfigs/cfmail
         
 fi
 file="/opt/toolbox/userconfigs/cfapi" 1>/dev/null 2>&1
@@ -32,7 +32,7 @@ file="/opt/toolbox/userconfigs/cfapi" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        dialog --inputbox "Insert your Cloudflare-Api-Key. If you don't want one, leave it empty" 8 45 2>/opt/toolbox/userconfigs/cfapi
+        dialog --inputbox "Insert your Cloudflare-Api-Key. If you don't want one, leave it empty. Used for Domainauth" 8 45 2>/opt/toolbox/userconfigs/cfapi
         
 fi   
 
@@ -41,8 +41,12 @@ file="/opt/toolbox/userconfigs/path" 1>/dev/null 2>&1
         then 
             echo "ok"
     else
-        dialog --inputbox "Insert the path, where you want toolbox to run from: Don't add a / at the end.\nNote: most data (like downloads) will be stored there" 8 80 2>/opt/toolbox/userconfigs/path
-        
+        dialog --inputbox "Insert the path, where you want toolbox to run from: Don't add a / at the end.\nNote: most data (like configs and data) will be stored there\n If empty /opt/toolbox/programs will be used" 8 80 2>/opt/toolbox/userconfigs/path
+        path=$(cat /opt/toolbox/userconfigs/path)
+        if [ -z "$var" ]
+            then
+                "/opt/toolbox/programs" > /opt/toolbox/userconfigs/path
+        fi
     fi
 file="/opt/toolbox/userconfigs/username" 1>/dev/null 2>&1
     if [ -e "$file" ]
