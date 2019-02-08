@@ -8,11 +8,11 @@ else
    clear
    echo "Dialog is not installed. It will be installed now."
 echo "System update"
-   sudo apt-get update 1>/dev/null 2>&1
+   sudo apt-get update >/dev/null 2>&1
 echo "System upgrade" 
-   sudo apt-get upgrade -y1 >/dev/null 2>&1
+   sudo apt-get upgrade -y  >/dev/null 2>&1
 echo "Dialog install"
-   sudo apt-get install dialog 1>/dev/null 2>&1
+   sudo apt-get install dialog >/dev/null 2>&1
    export NCURSES_NO_UTF8_ACS=1
    sudo touch /etc/bash.bashrc.local
    sudo echo "export NCURSES_NO_UTF8_ACS=1" >> /etc/bash.bashrc.local
