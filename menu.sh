@@ -7,8 +7,9 @@ file="/opt/toolbox/userconfigs/username" 1>/dev/null 2>&1
         then 
             echo "username set - checking next"
     else
-        dialog --inputbox "Insert your username to add it to sudoers. Leave emty to leave empty" 8 45 2>/opt/toolbox/userconfigs/domain
-        
+        dialog --inputbox "Insert your username to add it to sudoers. Leave empty to disable" 8 45 2>/opt/toolbox/userconfigs/username
+        username=$(cat /opt/toolbox/userconfigs/username)
+        adduser $username sudo
 fi
 file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
     if [ -e "$file" ]
