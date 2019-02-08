@@ -2,6 +2,14 @@
 export NCURSES_NO_UTF8_ACS=1
 clear
 sudo chmod 750 -R /opt/toolbox
+file="/opt/toolbox/userconfigs/username" 1>/dev/null 2>&1
+    if [ -e "$file" ]
+        then 
+            echo "username set - checking next"
+    else
+        dialog --inputbox "Insert your username to add it to sudoers. Leave emty to leave empty" 8 45 2>/opt/toolbox/userconfigs/domain
+        
+fi
 file="/opt/toolbox/userconfigs/domain" 1>/dev/null 2>&1
     if [ -e "$file" ]
         then 
