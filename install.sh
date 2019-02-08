@@ -1,5 +1,5 @@
 echo "install git ca-certificates sudo"
-sudo apt-get install git ca-certificates sudo -y > /dev/null 2>&1
+apt-get install git ca-certificates sudo -y > /dev/null 2>&1
 sudo mkdir -p /opt/toolbox
 sudo chown 1000:1000 /opt/toolbox
 sudo chmod 750 /opt/toolbox
